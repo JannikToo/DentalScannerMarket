@@ -1,798 +1,676 @@
-// Dashboard Data
-const dashboardData = {
-  "market_segments": {
-    "Dental Practices": {
-      "description": "General dentists and orthodontists - main users of IOS for daily patient treatment",
-      "market_penetration": 9,
-      "needs": ["Higher efficiency", "Precision", "Patient comfort"],
-      "current_support": "Intensive marketing, training, financing models, Key Opinion Leaders",
-      "growth_potential": "High"
-    },
-    "Dental Laboratories": {
-      "description": "Dual role - receive IOS data from practices and can act as multipliers",
-      "market_penetration": 15,
-      "needs": ["Data integration", "Workflow efficiency", "Communication tools"],
-      "current_support": "Indirect support via software interfaces, laboratory roadshows",
-      "growth_potential": "Medium-High"
-    },
-    "Universities & Research": {
-      "description": "Dental faculties and technical research institutes - crucial for education and innovation",
-      "market_penetration": 75,
-      "needs": ["Educational tools", "Research capabilities", "Student training"],
-      "current_support": "Academic programs, equipment donations, research partnerships",
-      "growth_potential": "Stable"
-    },
-    "OEMs & Technology Companies": {
-      "description": "Large traditional firms and specialized manufacturers producing IOS",
-      "market_penetration": 90,
-      "needs": ["Innovation", "Market expansion", "Partner networks"],
-      "current_support": "Direct sales, product innovation, training academies",
-      "growth_potential": "Mature market"
-    },
-    "Startups & Tech Enthusiasts": {
-      "description": "Specialized solutions and technology enthusiasts driving innovation",
-      "market_penetration": 5,
-      "needs": ["Development resources", "Market access", "Community support"],
-      "current_support": "Open interfaces, SDKs, community programs",
-      "growth_potential": "High"
-    },
-    "Distributors & Resellers": {
-      "description": "Sales channels connecting manufacturers with end users",
-      "market_penetration": 60,
-      "needs": ["Product training", "Marketing support", "Technical expertise"],
-      "current_support": "Partner programs, training, marketing materials",
-      "growth_potential": "Stable"
-    }
-  },
-  "distribution_channels": {
-    "Direct Sales": {
-      "market_reach": 70,
-      "segments_reached": ["Large practices", "Clinics", "Key accounts"],
-      "providers": ["Align Technology", "Dentsply Sirona"],
-      "advantages": ["Direct relationship", "Higher margins", "Control"],
-      "challenges": ["High costs", "Limited reach"]
-    },
-    "Authorized Distributors": {
-      "market_reach": 90,
-      "segments_reached": ["General practices", "Small/medium labs"],
-      "providers": ["3Shape", "Medit", "Most manufacturers"],
-      "advantages": ["Wide reach", "Local support", "Established networks"],
-      "challenges": ["Margin pressure", "Dependency"]
-    },
-    "Online Platforms": {
-      "market_reach": 40,
-      "segments_reached": ["Price-sensitive customers", "Tech-savvy users"],
-      "providers": ["Emerging trend", "Bedent (Switzerland)"],
-      "advantages": ["Lower costs", "Direct access", "Convenience"],
-      "challenges": ["Limited personal support", "Trust issues"]
-    },
-    "Academic Channels": {
-      "market_reach": 30,
-      "segments_reached": ["Students", "Researchers", "Academic institutions"],
-      "providers": ["Most major manufacturers"],
-      "advantages": ["Future market development", "Research partnerships"],
-      "challenges": ["Lower volumes", "Educational pricing"]
-    },
-    "Trade Shows & Conferences": {
-      "market_reach": 50,
-      "segments_reached": ["All segments", "International markets"],
-      "providers": ["All manufacturers"],
-      "advantages": ["Direct interaction", "Product demonstrations"],
-      "challenges": ["High costs", "Limited frequency"]
-    }
-  },
-  "strategic_partners": [
-    {"Name": "Acteon Group", "Type": "Potential Hardware Partner", "Category": "Strategic Partner", "Country": "France", "Potential_Value": 5, "Strengths": "Imaging expertise, No current IOS offering, European presence", "Cooperation_Format": "F&E Partner for hardware development"},
-    {"Name": "orangedental", "Type": "Distribution Partner", "Category": "Strategic Partner", "Country": "Germany", "Potential_Value": 5, "Strengths": "Digital dentistry expertise, Local market knowledge, Henry Schein connection", "Cooperation_Format": "Value-added distributor for DACH region"},
-    {"Name": "DentalTwin", "Type": "Software/AI Partner", "Category": "Strategic Partner", "Country": "Germany", "Potential_Value": 5, "Strengths": "AI-based prosthetic planning, German startup, Cloud solutions", "Cooperation_Format": "API integration for AI-powered workflows"},
-    {"Name": "Pearl Inc", "Type": "AI Technology Partner", "Category": "Strategic Partner", "Country": "USA", "Potential_Value": 5, "Strengths": "First FDA-cleared dental AI for 2D/3D, Global partnerships", "Cooperation_Format": "KI-Partner for scan analysis and diagnostics"},
-    {"Name": "Dentallabor Lexmann", "Type": "Pilot User & Multiplier", "Category": "Strategic Partner", "Country": "Germany", "Potential_Value": 5, "Strengths": "Innovation-focused, Active in digital promotion, Practice partnerships", "Cooperation_Format": "Pilot implementation and feedback provider"},
-    {"Name": "Align Technology", "Type": "OEM", "Category": "Major OEM", "Country": "USA", "Potential_Value": 1, "Strengths": "Market leadership, Integration with Invisalign, Strong support", "Cooperation_Format": "Limited - established competitor"},
-    {"Name": "3Shape", "Type": "OEM", "Category": "Major OEM", "Country": "Denmark", "Potential_Value": 3, "Strengths": "Open ecosystem, Broad partner platform, Innovation", "Cooperation_Format": "Potential app integration"},
-    {"Name": "Dentsply Sirona", "Type": "OEM", "Category": "Major OEM", "Country": "Germany", "Potential_Value": 2, "Strengths": "Comprehensive portfolio, Historical German roots", "Cooperation_Format": "Academic partnerships possible"},
-    {"Name": "Envista/Dexis", "Type": "OEM", "Category": "Major OEM", "Country": "USA", "Potential_Value": 3, "Strengths": "Comprehensive imaging solutions, Software platform", "Cooperation_Format": "Modular integration opportunities"}
-  ],
-  "academic_institutions": [
-    {"Name": "University of Giessen", "Country": "Germany", "Type": "University", "Potential_Value": 5, "Focus": "Digital impression studies, IOS research", "Current_Activity": "Presentations on digital impression adoption"},
-    {"Name": "University Hospital Dresden", "Country": "Germany", "Type": "University", "Potential_Value": 5, "Focus": "EndoScan3D project, 3D endoscopy for children", "Current_Activity": "Collaboration with Fraunhofer HHI"},
-    {"Name": "Fraunhofer HHI Berlin", "Country": "Germany", "Type": "Research Institute", "Potential_Value": 6, "Focus": "3D imaging technology, Optical measurement", "Current_Activity": "EndoScan3D development"},
-    {"Name": "Fraunhofer IGD", "Country": "Germany", "Type": "Research Institute", "Potential_Value": 6, "Focus": "Dental imaging analysis, CAD software development", "Current_Activity": "Dental imaging and AI research"},
-    {"Name": "AIT Austrian Institute of Technology", "Country": "Austria", "Type": "Research Institute", "Potential_Value": 5, "Focus": "Vision, Automation & Control, Optical measurement", "Current_Activity": "Developed world's smallest IOS"},
-    {"Name": "ETH Zurich", "Country": "Switzerland", "Type": "University", "Potential_Value": 5, "Focus": "Medical technology, Digital workflows", "Current_Activity": "Advanced digital dentistry research"},
-    {"Name": "University of Zurich", "Country": "Switzerland", "Type": "University", "Potential_Value": 5, "Focus": "Digital Dentistry Center, CAD/CAM pioneer", "Current_Activity": "KI integration in dental education"},
-    {"Name": "DGDOA", "Country": "Germany", "Type": "Professional Network", "Potential_Value": 5, "Focus": "Digital impression technology", "Current_Activity": "Annual conferences and workshops"},
-    {"Name": "Digital Dentistry Society", "Country": "International", "Type": "Professional Network", "Potential_Value": 5, "Focus": "Global expert network", "Current_Activity": "Conferences and publications"},
-    {"Name": "Medical Valley EMN", "Country": "Germany", "Type": "Innovation Cluster", "Potential_Value": 5, "Focus": "Medical technology innovation", "Current_Activity": "Industry partnerships"},
-    {"Name": "Life Science Cluster Zurich", "Country": "Switzerland", "Type": "Innovation Cluster", "Potential_Value": 5, "Focus": "Life sciences and medical technology", "Current_Activity": "Startup ecosystem support"}
-  ],
-  "company_support": [
-    {"Company": "3Shape", "Multi-Level Support": 5, "Training Programs": 4, "Community Forums": 3, "Open Platforms": 5, "Developer Programs": 4, "User Recognition": 4},
-    {"Company": "Medit", "Multi-Level Support": 3, "Training Programs": 3, "Community Forums": 5, "Open Platforms": 3, "Developer Programs": 3, "User Recognition": 3},
-    {"Company": "Dentsply Sirona", "Multi-Level Support": 4, "Training Programs": 5, "Community Forums": 2, "Open Platforms": 2, "Developer Programs": 3, "User Recognition": 3},
-    {"Company": "Align Technology", "Multi-Level Support": 4, "Training Programs": 4, "Community Forums": 2, "Open Platforms": 2, "Developer Programs": 3, "User Recognition": 5}
-  ],
-  "roadmap": [
-    {"Phase": "Phase 1", "Period": "Months 1-6", "Title": "Preparation & Networking", "Objectives": ["Gain visibility", "Identify core partners", "Initiate pilot projects"], "Activities": ["Presence at IDS 2025 Cologne", "Establish Advisory Board", "Pilot partnerships", "Apply for funding"], "Key_Partners": ["Acteon", "orangedental", "Lexmann"], "Success_Metrics": ["3+ signed LOIs", "Advisory board established", "Funding secured"]},
-    {"Phase": "Phase 2", "Period": "Months 6-12", "Title": "Development & Internal Community", "Objectives": ["Complete MVP toolkit", "Build internal test community", "Secure partnerships"], "Activities": ["Finalize open-source kit", "Co-engineering partnerships", "Establish collaboration hub", "Train early users"], "Key_Partners": ["Development partners", "Beta testers", "Research institutions"], "Success_Metrics": ["MVP completed", "10+ beta users", "MOUs signed"]},
-    {"Phase": "Phase 3", "Period": "Months 12-18", "Title": "Launch & Market Entry", "Objectives": ["Public release", "Commercial application", "Network expansion"], "Activities": ["Official launch", "Distribution agreements", "Integration projects", "Community marketing"], "Key_Partners": ["Distributors", "AI partners", "Startups"], "Success_Metrics": ["100+ active users", "5+ integrations", "Media coverage"]},
-    {"Phase": "Phase 4", "Period": "Months 18-24+", "Title": "Growth & Sustainability", "Objectives": ["European expansion", "Self-sustaining community", "Commercial viability"], "Activities": ["European expansion", "Community self-governance", "Commercial products", "Innovation challenges"], "Key_Partners": ["European distributors", "Community leaders"], "Success_Metrics": ["500+ users", "Self-sustaining community", "Revenue positive"]}
-  ]
-};
+// Dashboard Application
+class DashboardApp {
+    constructor() {
+        this.currentSection = 'executive';
+        this.filters = {
+            country: 'all',
+            confidence: 'all',
+            segment: 'all'
+        };
+        
+        // Market data from the provided JSON
+        this.data = {
+            market_data: {
+                european_market_size_2024: {
+                    value: "€180.4 million",
+                    source: "Persistence Market Research",
+                    confidence: "High",
+                    alternative_estimate: "€161.65 million (Data Bridge)",
+                    projected_2031: "€390.2 million",
+                    cagr: "11.6%"
+                },
+                germany_market_share: {
+                    value: "32%",
+                    penetration_rate: "8-10%",
+                    confidence: "High",
+                    source: "Multiple industry reports"
+                },
+                global_market_size_2024: {
+                    value: "$744.7 million",
+                    projected_2034: "$1,548.0 million",
+                    cagr: "7.6%",
+                    source: "Future Market Insights",
+                    confidence: "High"
+                }
+            },
+            market_segments: {
+                dental_practices: {
+                    size: 45,
+                    penetration: "8-10% in Germany",
+                    key_needs: ["Efficiency", "Precision", "Patient comfort"],
+                    current_gaps: ["Training", "Workflow integration", "Cost barriers"],
+                    confidence: "High"
+                },
+                dental_laboratories: {
+                    size: 25,
+                    role: "Data receivers + multipliers",
+                    trend: "Increasing own scanner adoption",
+                    strategic_value: "Can drive practice adoption",
+                    confidence: "Medium"
+                },
+                universities: {
+                    size: 15,
+                    role: "R&D, validation, talent pipeline",
+                    key_institutions: ["Uni Gießen", "TU Dresden", "Fraunhofer HHI"],
+                    confidence: "High"
+                },
+                oems: {
+                    size: 15,
+                    leaders: ["Align (iTero)", "3Shape (Trios)", "Dentsply Sirona (Primescan)", "Medit", "Envista/Dexis"],
+                    confidence: "High"
+                }
+            }
+        };
 
-// Global variables
-let currentPage = 'market-overview';
-let charts = {};
+        this.networkData = this.generateNetworkData();
+        this.init();
+    }
 
-// Initialize the dashboard
-document.addEventListener('DOMContentLoaded', function() {
-  initializeNavigation();
-  initializeCharts();
-  initializeTables();
-  initializeFilters();
-  initializeTabs();
-  initializeModals();
-  initializeDownloads();
-  initializeRoadmap();
+    init() {
+        this.setupEventListeners();
+        this.initializeCharts();
+        this.createNetworkGraph();
+        this.showSection('executive');
+    }
+
+    setupEventListeners() {
+        // Navigation buttons
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const section = e.target.dataset.section;
+                this.showSection(section);
+            });
+        });
+
+        // Global filters
+        document.getElementById('countryFilter').addEventListener('change', (e) => {
+            this.filters.country = e.target.value;
+            this.applyFilters();
+        });
+
+        document.getElementById('confidenceFilter').addEventListener('change', (e) => {
+            this.filters.confidence = e.target.value;
+            this.applyFilters();
+        });
+
+        // Player cards
+        document.querySelectorAll('.player-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                this.showPlayerDetails(e.currentTarget.dataset.player);
+            });
+        });
+
+        // Network graph controls
+        const resetBtn = document.getElementById('resetNetwork');
+        const toggleBtn = document.getElementById('toggleLabels');
+        
+        if (resetBtn) {
+            resetBtn.addEventListener('click', () => this.resetNetworkView());
+        }
+        
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', () => this.toggleNetworkLabels());
+        }
+
+        // Segment items
+        document.querySelectorAll('.segment-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                this.toggleSegmentDetails(e.currentTarget);
+            });
+        });
+
+        // Source tooltips
+        document.querySelectorAll('.metric-source').forEach(source => {
+            source.addEventListener('mouseenter', (e) => {
+                this.showTooltip(e.target, e.target.title);
+            });
+            source.addEventListener('mouseleave', () => {
+                this.hideTooltip();
+            });
+        });
+    }
+
+    showSection(sectionId) {
+        // Hide all sections
+        document.querySelectorAll('.dashboard-section').forEach(section => {
+            section.classList.remove('active');
+        });
+
+        // Show selected section
+        const targetSection = document.getElementById(sectionId);
+        if (targetSection) {
+            targetSection.classList.add('active');
+        }
+
+        // Update navigation
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        const activeBtn = document.querySelector(`[data-section="${sectionId}"]`);
+        if (activeBtn) {
+            activeBtn.classList.add('active');
+        }
+
+        this.currentSection = sectionId;
+
+        // Trigger section-specific actions
+        this.onSectionChange(sectionId);
+    }
+
+    onSectionChange(sectionId) {
+        switch (sectionId) {
+            case 'segmentation':
+                this.updateSegmentChart();
+                break;
+            case 'channels':
+                this.updateChannelsChart();
+                break;
+            case 'network':
+                this.updateNetworkGraph();
+                break;
+        }
+    }
+
+    initializeCharts() {
+        this.initSegmentChart();
+        this.initChannelsChart();
+    }
+
+    initSegmentChart() {
+        const ctx = document.getElementById('segmentChart');
+        if (!ctx) return;
+
+        const segments = this.data.market_segments;
+        const data = {
+            labels: ['Dental Practices', 'Dental Laboratories', 'Universities', 'OEMs'],
+            datasets: [{
+                data: [
+                    segments.dental_practices.size,
+                    segments.dental_laboratories.size,
+                    segments.universities.size,
+                    segments.oems.size
+                ],
+                backgroundColor: ['#1FB8CD', '#FFC185', '#B4413C', '#5D878F'],
+                borderWidth: 2,
+                borderColor: '#fff'
+            }]
+        };
+
+        this.segmentChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            padding: 20,
+                            usePointStyle: true
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return context.label + ': ' + context.parsed + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    initChannelsChart() {
+        const ctx = document.getElementById('channelsChart');
+        if (!ctx) return;
+
+        const data = {
+            labels: ['Direct Sales', 'Henry Schein', 'orangedental', 'Academic Programs', 'Online Channels'],
+            datasets: [{
+                label: 'Channel Effectiveness',
+                data: [85, 90, 75, 60, 45],
+                backgroundColor: ['#1FB8CD', '#FFC185', '#B4413C', '#5D878F', '#D2BA4C'],
+                borderWidth: 1,
+                borderColor: '#fff'
+            }]
+        };
+
+        this.channelsChart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        max: 100,
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                return 'Effectiveness: ' + context.parsed.y + '%';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    generateNetworkData() {
+        const nodes = [
+            // OEMs
+            { id: 'align', name: 'Align Technology', type: 'oem', group: 1 },
+            { id: '3shape', name: '3Shape', type: 'oem', group: 1 },
+            { id: 'dentsply', name: 'Dentsply Sirona', type: 'oem', group: 1 },
+            { id: 'medit', name: 'Medit', type: 'oem', group: 1 },
+            
+            // Distributors
+            { id: 'henry_schein', name: 'Henry Schein', type: 'distributor', group: 2 },
+            { id: 'orangedental', name: 'orangedental', type: 'distributor', group: 2 },
+            { id: 'acteon', name: 'Acteon Group', type: 'distributor', group: 2 },
+            
+            // Startups
+            { id: 'dentaltwin', name: 'DentalTwin', type: 'startup', group: 3 },
+            { id: 'pearl', name: 'Pearl', type: 'startup', group: 3 },
+            { id: 'lexmann', name: 'Lexmann', type: 'startup', group: 3 },
+            
+            // Academic
+            { id: 'uni_giessen', name: 'Uni Giessen', type: 'academic', group: 4 },
+            { id: 'tu_dresden', name: 'TU Dresden', type: 'academic', group: 4 },
+            { id: 'fraunhofer', name: 'Fraunhofer IGD', type: 'academic', group: 4 },
+            { id: 'ait', name: 'AIT Austria', type: 'academic', group: 4 },
+            
+            // Market Segments
+            { id: 'practices', name: 'Dental Practices', type: 'segment', group: 5 },
+            { id: 'labs', name: 'Dental Labs', type: 'segment', group: 5 },
+            { id: 'universities', name: 'Universities', type: 'segment', group: 5 }
+        ];
+
+        const links = [
+            // OEM to distributor relationships
+            { source: 'align', target: 'henry_schein', strength: 3 },
+            { source: '3shape', target: 'orangedental', strength: 2 },
+            { source: 'dentsply', target: 'henry_schein', strength: 3 },
+            
+            // Distributor to segment relationships
+            { source: 'henry_schein', target: 'practices', strength: 3 },
+            { source: 'henry_schein', target: 'labs', strength: 2 },
+            { source: 'orangedental', target: 'practices', strength: 3 },
+            
+            // Academic partnerships
+            { source: 'uni_giessen', target: 'dentsply', strength: 2 },
+            { source: 'tu_dresden', target: 'fraunhofer', strength: 3 },
+            { source: 'ait', target: '3shape', strength: 2 },
+            
+            // Startup partnerships
+            { source: 'dentaltwin', target: 'practices', strength: 2 },
+            { source: 'pearl', target: 'align', strength: 2 },
+            { source: 'lexmann', target: 'labs', strength: 3 },
+            
+            // Academic to segment
+            { source: 'uni_giessen', target: 'universities', strength: 3 },
+            { source: 'tu_dresden', target: 'universities', strength: 3 },
+            { source: 'fraunhofer', target: 'universities', strength: 2 }
+        ];
+
+        return { nodes, links };
+    }
+
+    createNetworkGraph() {
+        const container = document.getElementById('networkGraph');
+        if (!container) return;
+
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+
+        // Clear any existing content
+        d3.select(container).selectAll("*").remove();
+
+        const svg = d3.select(container)
+            .append('svg')
+            .attr('width', width)
+            .attr('height', height);
+
+        const simulation = d3.forceSimulation(this.networkData.nodes)
+            .force('link', d3.forceLink(this.networkData.links).id(d => d.id).distance(100))
+            .force('charge', d3.forceManyBody().strength(-300))
+            .force('center', d3.forceCenter(width / 2, height / 2));
+
+        // Create links
+        const link = svg.append('g')
+            .attr('class', 'links')
+            .selectAll('line')
+            .data(this.networkData.links)
+            .enter().append('line')
+            .attr('stroke', '#999')
+            .attr('stroke-opacity', 0.6)
+            .attr('stroke-width', d => Math.sqrt(d.strength) * 2);
+
+        // Create nodes
+        const node = svg.append('g')
+            .attr('class', 'nodes')
+            .selectAll('circle')
+            .data(this.networkData.nodes)
+            .enter().append('circle')
+            .attr('r', 8)
+            .attr('fill', d => this.getNodeColor(d.type))
+            .attr('stroke', '#fff')
+            .attr('stroke-width', 2)
+            .call(d3.drag()
+                .on('start', (event, d) => this.dragStarted(event, d, simulation))
+                .on('drag', (event, d) => this.dragged(event, d))
+                .on('end', (event, d) => this.dragEnded(event, d, simulation)));
+
+        // Add labels
+        const labels = svg.append('g')
+            .attr('class', 'labels')
+            .selectAll('text')
+            .data(this.networkData.nodes)
+            .enter().append('text')
+            .attr('dx', 12)
+            .attr('dy', 4)
+            .style('font', '12px sans-serif')
+            .style('fill', '#333')
+            .text(d => d.name);
+
+        // Add tooltips
+        node.append('title')
+            .text(d => `${d.name} (${d.type})`);
+
+        // Update positions on simulation tick
+        simulation.on('tick', () => {
+            link
+                .attr('x1', d => d.source.x)
+                .attr('y1', d => d.source.y)
+                .attr('x2', d => d.target.x)
+                .attr('y2', d => d.target.y);
+
+            node
+                .attr('cx', d => d.x)
+                .attr('cy', d => d.y);
+
+            labels
+                .attr('x', d => d.x)
+                .attr('y', d => d.y);
+        });
+
+        this.networkSvg = svg;
+        this.networkSimulation = simulation;
+    }
+
+    getNodeColor(type) {
+        const colors = {
+            'oem': '#1FB8CD',
+            'distributor': '#FFC185',
+            'startup': '#B4413C',
+            'academic': '#5D878F',
+            'segment': '#D2BA4C'
+        };
+        return colors[type] || '#999';
+    }
+
+    dragStarted(event, d, simulation) {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x;
+        d.fy = d.y;
+    }
+
+    dragged(event, d) {
+        d.fx = event.x;
+        d.fy = event.y;
+    }
+
+    dragEnded(event, d, simulation) {
+        if (!event.active) simulation.alphaTarget(0);
+        d.fx = null;
+        d.fy = null;
+    }
+
+    resetNetworkView() {
+        if (this.networkSimulation) {
+            this.networkSimulation.alpha(1).restart();
+        }
+    }
+
+    toggleNetworkLabels() {
+        const labels = d3.select('#networkGraph').selectAll('.labels text');
+        const currentOpacity = labels.style('opacity');
+        labels.style('opacity', currentOpacity === '0' ? '1' : '0');
+    }
+
+    updateSegmentChart() {
+        if (this.segmentChart) {
+            this.segmentChart.update();
+        }
+    }
+
+    updateChannelsChart() {
+        if (this.channelsChart) {
+            this.channelsChart.update();
+        }
+    }
+
+    updateNetworkGraph() {
+        // Refresh network graph if needed
+        if (this.networkSimulation) {
+            this.networkSimulation.alpha(0.1).restart();
+        }
+    }
+
+    applyFilters() {
+        // Apply country filter
+        this.applyCountryFilter();
+        
+        // Apply confidence filter
+        this.applyConfidenceFilter();
+        
+        // Update visualizations
+        this.updateFilteredVisualization();
+    }
+
+    applyCountryFilter() {
+        const countryElements = document.querySelectorAll('[data-country]');
+        countryElements.forEach(element => {
+            const elementCountry = element.dataset.country;
+            if (this.filters.country === 'all' || elementCountry === this.filters.country) {
+                element.style.display = '';
+            } else {
+                element.style.display = 'none';
+            }
+        });
+    }
+
+    applyConfidenceFilter() {
+        const confidenceElements = document.querySelectorAll('.confidence-indicator');
+        confidenceElements.forEach(element => {
+            const elementConfidence = element.textContent.toLowerCase().replace(' confidence', '');
+            const parentCard = element.closest('.card, .player-card, .metric-card, .segment-item');
+            
+            if (parentCard) {
+                if (this.filters.confidence === 'all' || elementConfidence === this.filters.confidence) {
+                    parentCard.style.display = '';
+                } else {
+                    parentCard.style.display = 'none';
+                }
+            }
+        });
+    }
+
+    updateFilteredVisualization() {
+        // Update charts based on filters
+        if (this.currentSection === 'segmentation') {
+            this.updateSegmentChart();
+        } else if (this.currentSection === 'channels') {
+            this.updateChannelsChart();
+        }
+    }
+
+    showPlayerDetails(playerId) {
+        const playerData = {
+            'align': {
+                name: 'Align Technology',
+                details: 'Market leader with 100,000+ iTero scanners globally. Revenue: $4.0B (2024)',
+                partnerships: ['Henry Schein', 'Pearl'],
+                strategic_value: 'High market access, moderate R&D fit'
+            },
+            '3shape': {
+                name: '3Shape',
+                details: 'Open ecosystem leader with Unite Platform connecting 1000+ labs',
+                partnerships: ['orangedental', 'AIT Austria'],
+                strategic_value: 'Excellent integration potential, strong R&D fit'
+            },
+            'acteon': {
+                name: 'Acteon Group',
+                details: 'French dental imaging leader with no current IOS offering',
+                partnerships: ['European distributors'],
+                strategic_value: 'Strong hardware expertise, good market access in Europe'
+            }
+        };
+
+        const player = playerData[playerId];
+        if (player) {
+            this.showModal(player.name, this.createPlayerDetailsHTML(player));
+        }
+    }
+
+    createPlayerDetailsHTML(player) {
+        return `
+            <div class="player-details">
+                <h3>${player.name}</h3>
+                <p><strong>Overview:</strong> ${player.details}</p>
+                <p><strong>Key Partnerships:</strong> ${player.partnerships.join(', ')}</p>
+                <p><strong>Strategic Value:</strong> ${player.strategic_value}</p>
+            </div>
+        `;
+    }
+
+    showModal(title, content) {
+        // Create modal if it doesn't exist
+        let modal = document.getElementById('detailModal');
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = 'detailModal';
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="modal-close">&times;</span>
+                    <div class="modal-body"></div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            // Add modal styles
+            const style = document.createElement('style');
+            style.textContent = `
+                .modal {
+                    display: none;
+                    position: fixed;
+                    z-index: 1000;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0,0,0,0.5);
+                }
+                .modal-content {
+                    background-color: var(--color-surface);
+                    margin: 10% auto;
+                    padding: 20px;
+                    border-radius: var(--radius-lg);
+                    width: 80%;
+                    max-width: 600px;
+                    position: relative;
+                }
+                .modal-close {
+                    position: absolute;
+                    top: 10px;
+                    right: 15px;
+                    font-size: 24px;
+                    cursor: pointer;
+                    color: var(--color-text-secondary);
+                }
+                .modal-close:hover {
+                    color: var(--color-text);
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Add close functionality
+            modal.querySelector('.modal-close').addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+
+        // Update modal content
+        modal.querySelector('.modal-body').innerHTML = content;
+        modal.style.display = 'block';
+    }
+
+    toggleSegmentDetails(segmentElement) {
+        const details = segmentElement.querySelector('.segment-details-content');
+        if (details.style.display === 'none' || !details.style.display) {
+            details.style.display = 'block';
+        } else {
+            details.style.display = 'none';
+        }
+    }
+
+    showTooltip(element, text) {
+        let tooltip = document.getElementById('tooltip');
+        if (!tooltip) {
+            tooltip = document.createElement('div');
+            tooltip.id = 'tooltip';
+            tooltip.className = 'tooltip';
+            document.body.appendChild(tooltip);
+        }
+
+        tooltip.textContent = text;
+        tooltip.classList.add('visible');
+
+        const rect = element.getBoundingClientRect();
+        tooltip.style.left = rect.left + 'px';
+        tooltip.style.top = (rect.top - tooltip.offsetHeight - 10) + 'px';
+    }
+
+    hideTooltip() {
+        const tooltip = document.getElementById('tooltip');
+        if (tooltip) {
+            tooltip.classList.remove('visible');
+        }
+    }
+}
+
+// Initialize the dashboard when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    new DashboardApp();
 });
 
-// Navigation
-function initializeNavigation() {
-  const navItems = document.querySelectorAll('.nav-item');
-  navItems.forEach(item => {
-    item.addEventListener('click', function() {
-      const targetPage = this.getAttribute('data-page');
-      showPage(targetPage);
-      
-      // Update active nav item
-      navItems.forEach(nav => nav.classList.remove('active'));
-      this.classList.add('active');
-    });
-  });
-  
-  // Set initial active nav item
-  document.querySelector('[data-page="market-overview"]').classList.add('active');
-}
-
-function showPage(pageId) {
-  // Hide all pages
-  document.querySelectorAll('.page').forEach(page => {
-    page.classList.remove('active');
-  });
-  
-  // Show target page
-  document.getElementById(pageId).classList.add('active');
-  currentPage = pageId;
-  
-  // Initialize page-specific content if needed
-  if (pageId === 'partners') {
-    initializePartnerCards();
-  } else if (pageId === 'academic') {
-    initializeAcademicCards();
-  }
-}
-
-// Charts initialization
-function initializeCharts() {
-  initializePenetrationChart();
-  initializeDistributionChart();
-  initializePartnershipChart();
-  initializeAcademicChart();
-  initializeSupportChart();
-}
-
-function initializePenetrationChart() {
-  const ctx = document.getElementById('penetrationChart').getContext('2d');
-  const segments = Object.keys(dashboardData.market_segments);
-  const penetrationData = segments.map(segment => dashboardData.market_segments[segment].market_penetration);
-  
-  charts.penetration = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: segments,
-      datasets: [{
-        label: 'Market Penetration (%)',
-        data: penetrationData,
-        backgroundColor: ['#1FB8CD', '#FFC185', '#B4413C', '#ECEBD5', '#5D878F', '#DB4545'],
-        borderColor: ['#1FB8CD', '#FFC185', '#B4413C', '#ECEBD5', '#5D878F', '#DB4545'],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          display: false
+// Handle window resize for responsive charts
+window.addEventListener('resize', () => {
+    setTimeout(() => {
+        if (window.dashboardApp) {
+            window.dashboardApp.updateFilteredVisualization();
         }
-      },
-      scales: {
-        y: {
-          beginAtZero: true,
-          max: 100,
-          title: {
-            display: true,
-            text: 'Market Penetration (%)'
-          }
-        }
-      }
-    }
-  });
-}
-
-function initializeDistributionChart() {
-  const ctx = document.getElementById('distributionChart').getContext('2d');
-  const channels = Object.keys(dashboardData.distribution_channels);
-  const reachData = channels.map(channel => dashboardData.distribution_channels[channel].market_reach);
-  
-  charts.distribution = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: channels,
-      datasets: [{
-        label: 'Market Reach (%)',
-        data: reachData,
-        backgroundColor: ['#1FB8CD', '#FFC185', '#B4413C', '#ECEBD5', '#5D878F'],
-        borderColor: ['#1FB8CD', '#FFC185', '#B4413C', '#ECEBD5', '#5D878F'],
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      indexAxis: 'y',
-      plugins: {
-        legend: {
-          display: false
-        }
-      },
-      scales: {
-        x: {
-          beginAtZero: true,
-          max: 100,
-          title: {
-            display: true,
-            text: 'Market Reach (%)'
-          }
-        }
-      }
-    }
-  });
-}
-
-function initializePartnershipChart() {
-  const ctx = document.getElementById('partnershipChart').getContext('2d');
-  const partners = dashboardData.strategic_partners;
-  const names = partners.map(p => p.Name);
-  const values = partners.map(p => p.Potential_Value);
-  const colors = partners.map(p => p.Category === 'Strategic Partner' ? '#1FB8CD' : '#FFC185');
-  
-  charts.partnership = new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: names,
-      datasets: [{
-        label: 'Partnership Potential',
-        data: values,
-        backgroundColor: colors,
-        borderColor: colors,
-        borderWidth: 1
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      indexAxis: 'y',
-      plugins: {
-        legend: {
-          display: false
-        }
-      },
-      scales: {
-        x: {
-          beginAtZero: true,
-          max: 6,
-          title: {
-            display: true,
-            text: 'Partnership Potential (1-6)'
-          }
-        }
-      }
-    }
-  });
-}
-
-function initializeAcademicChart() {
-  const ctx = document.getElementById('academicChart').getContext('2d');
-  const institutions = dashboardData.academic_institutions;
-  const countries = ['Germany', 'Austria', 'Switzerland', 'International'];
-  const countCounts = countries.map(country => 
-    institutions.filter(inst => inst.Country === country).length
-  );
-  
-  charts.academic = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-      labels: countries,
-      datasets: [{
-        data: countCounts,
-        backgroundColor: ['#1FB8CD', '#FFC185', '#B4413C', '#ECEBD5'],
-        borderColor: ['#1FB8CD', '#FFC185', '#B4413C', '#ECEBD5'],
-        borderWidth: 2
-      }]
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      plugins: {
-        legend: {
-          position: 'right'
-        }
-      }
-    }
-  });
-}
-
-function initializeSupportChart() {
-  const ctx = document.getElementById('supportChart').getContext('2d');
-  const companies = dashboardData.company_support;
-  const categories = ['Multi-Level Support', 'Training Programs', 'Community Forums', 'Open Platforms', 'Developer Programs', 'User Recognition'];
-  
-  const datasets = companies.map((company, index) => ({
-    label: company.Company,
-    data: categories.map(cat => company[cat]),
-    backgroundColor: ['#1FB8CD', '#FFC185', '#B4413C', '#ECEBD5'][index],
-    borderColor: ['#1FB8CD', '#FFC185', '#B4413C', '#ECEBD5'][index],
-    borderWidth: 1
-  }));
-  
-  charts.support = new Chart(ctx, {
-    type: 'radar',
-    data: {
-      labels: categories,
-      datasets: datasets
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      scales: {
-        r: {
-          beginAtZero: true,
-          max: 5
-        }
-      }
-    }
-  });
-}
-
-// Tables
-function initializeTables() {
-  populateSegmentsTable();
-  populateChannelsTable();
-}
-
-function populateSegmentsTable() {
-  const tbody = document.querySelector('#segmentsTable tbody');
-  const segments = dashboardData.market_segments;
-  
-  tbody.innerHTML = '';
-  Object.keys(segments).forEach(segmentName => {
-    const segment = segments[segmentName];
-    const row = document.createElement('tr');
-    
-    const growthClass = getGrowthPotentialClass(segment.growth_potential);
-    
-    row.innerHTML = `
-      <td><strong>${segmentName}</strong><br><small>${segment.description}</small></td>
-      <td>${segment.market_penetration}%</td>
-      <td><span class="status ${growthClass}">${segment.growth_potential}</span></td>
-      <td>${segment.needs.join(', ')}</td>
-      <td>${segment.current_support}</td>
-    `;
-    tbody.appendChild(row);
-  });
-}
-
-function populateChannelsTable() {
-  const tbody = document.querySelector('#channelsTable tbody');
-  const channels = dashboardData.distribution_channels;
-  
-  tbody.innerHTML = '';
-  Object.keys(channels).forEach(channelName => {
-    const channel = channels[channelName];
-    const row = document.createElement('tr');
-    
-    row.innerHTML = `
-      <td><strong>${channelName}</strong></td>
-      <td>${channel.market_reach}%</td>
-      <td>${channel.segments_reached.join(', ')}</td>
-      <td>${channel.providers.join(', ')}</td>
-      <td>${channel.advantages.join(', ')}</td>
-      <td>${channel.challenges.join(', ')}</td>
-    `;
-    tbody.appendChild(row);
-  });
-}
-
-function getGrowthPotentialClass(potential) {
-  switch(potential) {
-    case 'High': return 'status--high';
-    case 'Medium-High': return 'status--medium';
-    case 'Stable': return 'status--stable';
-    case 'Mature market': return 'status--stable';
-    default: return 'status--stable';
-  }
-}
-
-// Filters
-function initializeFilters() {
-  // Growth filter for segments
-  document.getElementById('growthFilter').addEventListener('change', function() {
-    filterSegmentsTable(this.value);
-  });
-  
-  // Reach filter for channels
-  document.getElementById('reachFilter').addEventListener('change', function() {
-    filterChannelsTable(this.value);
-  });
-  
-  // Partner filters
-  document.getElementById('partnerTypeFilter').addEventListener('change', filterPartners);
-  document.getElementById('countryFilter').addEventListener('change', filterPartners);
-  
-  // Academic filters
-  document.getElementById('institutionTypeFilter').addEventListener('change', filterAcademicInstitutions);
-  document.getElementById('academicCountryFilter').addEventListener('change', filterAcademicInstitutions);
-}
-
-function filterSegmentsTable(growthFilter) {
-  const rows = document.querySelectorAll('#segmentsTable tbody tr');
-  
-  rows.forEach(row => {
-    if (growthFilter === 'all') {
-      row.style.display = '';
-    } else {
-      const growthCell = row.cells[2].textContent.trim();
-      row.style.display = growthCell.includes(growthFilter) ? '' : 'none';
-    }
-  });
-}
-
-function filterChannelsTable(reachFilter) {
-  const rows = document.querySelectorAll('#channelsTable tbody tr');
-  
-  rows.forEach(row => {
-    if (reachFilter === 'all') {
-      row.style.display = '';
-    } else {
-      const reachValue = parseInt(row.cells[1].textContent);
-      let show = false;
-      
-      switch(reachFilter) {
-        case 'high': show = reachValue > 60; break;
-        case 'medium': show = reachValue >= 40 && reachValue <= 60; break;
-        case 'low': show = reachValue < 40; break;
-      }
-      
-      row.style.display = show ? '' : 'none';
-    }
-  });
-}
-
-function filterPartners() {
-  const typeFilter = document.getElementById('partnerTypeFilter').value;
-  const countryFilter = document.getElementById('countryFilter').value;
-  
-  // Re-render partner cards with filters
-  initializePartnerCards();
-}
-
-function filterAcademicInstitutions() {
-  const typeFilter = document.getElementById('institutionTypeFilter').value;
-  const countryFilter = document.getElementById('academicCountryFilter').value;
-  
-  // Re-render academic cards with filters
-  initializeAcademicCards();
-}
-
-// Tabs
-function initializeTabs() {
-  const tabBtns = document.querySelectorAll('.tab-btn');
-  tabBtns.forEach(btn => {
-    btn.addEventListener('click', function() {
-      const targetTab = this.getAttribute('data-tab');
-      
-      // Update active tab button
-      tabBtns.forEach(tab => tab.classList.remove('active'));
-      this.classList.add('active');
-      
-      // Show/hide tab content
-      document.querySelectorAll('.tab-content').forEach(content => {
-        content.classList.remove('active');
-      });
-      document.getElementById(`${targetTab}-tab`).classList.add('active');
-    });
-  });
-}
-
-// Partner cards
-function initializePartnerCards() {
-  const typeFilter = document.getElementById('partnerTypeFilter').value;
-  const countryFilter = document.getElementById('countryFilter').value;
-  
-  const strategicPartners = dashboardData.strategic_partners.filter(p => {
-    const typeMatch = typeFilter === 'all' || p.Category === typeFilter;
-    const countryMatch = countryFilter === 'all' || p.Country === countryFilter;
-    return p.Category === 'Strategic Partner' && typeMatch && countryMatch;
-  });
-  
-  const oemPartners = dashboardData.strategic_partners.filter(p => {
-    const typeMatch = typeFilter === 'all' || p.Category === typeFilter;
-    const countryMatch = countryFilter === 'all' || p.Country === countryFilter;
-    return p.Category === 'Major OEM' && typeMatch && countryMatch;
-  });
-  
-  renderPartnerCards('strategicPartners', strategicPartners);
-  renderPartnerCards('oemPartners', oemPartners);
-}
-
-function renderPartnerCards(containerId, partners) {
-  const container = document.getElementById(containerId);
-  container.innerHTML = '';
-  
-  partners.forEach(partner => {
-    const card = document.createElement('div');
-    card.className = 'partner-card card';
-    card.innerHTML = `
-      <div class="card__body">
-        <div class="partner-header">
-          <h4>${partner.Name}</h4>
-          <span class="partner-score">${partner.Potential_Value}/6</span>
-        </div>
-        <p><strong>Type:</strong> ${partner.Type}</p>
-        <p><strong>Country:</strong> ${partner.Country}</p>
-        <p><strong>Strengths:</strong> ${partner.Strengths}</p>
-        <p><strong>Cooperation:</strong> ${partner.Cooperation_Format}</p>
-      </div>
-    `;
-    
-    card.addEventListener('click', () => showPartnerModal(partner));
-    container.appendChild(card);
-  });
-}
-
-// Academic cards
-function initializeAcademicCards() {
-  const typeFilter = document.getElementById('institutionTypeFilter').value;
-  const countryFilter = document.getElementById('academicCountryFilter').value;
-  
-  const countries = ['Germany', 'Austria', 'Switzerland', 'International'];
-  
-  countries.forEach(country => {
-    const institutions = dashboardData.academic_institutions.filter(inst => {
-      const typeMatch = typeFilter === 'all' || inst.Type === typeFilter;
-      const countryMatch = countryFilter === 'all' || inst.Country === countryFilter;
-      return inst.Country === country && typeMatch && countryMatch;
-    });
-    
-    const containerId = country.toLowerCase() + 'Institutions';
-    renderAcademicCards(containerId, institutions);
-  });
-}
-
-function renderAcademicCards(containerId, institutions) {
-  const container = document.getElementById(containerId);
-  if (!container) return;
-  
-  container.innerHTML = '';
-  
-  institutions.forEach(institution => {
-    const card = document.createElement('div');
-    card.className = 'institution-card card';
-    card.innerHTML = `
-      <div class="card__body">
-        <span class="institution-type">${institution.Type}</span>
-        <h4>${institution.Name}</h4>
-        <p><strong>Focus:</strong> ${institution.Focus}</p>
-        <p><strong>Current Activity:</strong> ${institution.Current_Activity}</p>
-        <p><strong>Collaboration Potential:</strong> ${institution.Potential_Value}/6</p>
-      </div>
-    `;
-    
-    card.addEventListener('click', () => showInstitutionModal(institution));
-    container.appendChild(card);
-  });
-}
-
-// Modals
-function initializeModals() {
-  const modal = document.getElementById('detailModal');
-  const closeBtn = document.querySelector('.modal-close');
-  
-  closeBtn.addEventListener('click', () => {
-    modal.style.display = 'none';
-  });
-  
-  window.addEventListener('click', (event) => {
-    if (event.target === modal) {
-      modal.style.display = 'none';
-    }
-  });
-}
-
-function showPartnerModal(partner) {
-  const modal = document.getElementById('detailModal');
-  const modalBody = document.getElementById('modalBody');
-  
-  modalBody.innerHTML = `
-    <h2>${partner.Name}</h2>
-    <div style="margin-bottom: 16px;">
-      <span class="partner-score" style="font-size: 18px;">Partnership Potential: ${partner.Potential_Value}/6</span>
-    </div>
-    <p><strong>Type:</strong> ${partner.Type}</p>
-    <p><strong>Category:</strong> ${partner.Category}</p>
-    <p><strong>Country:</strong> ${partner.Country}</p>
-    <p><strong>Key Strengths:</strong> ${partner.Strengths}</p>
-    <p><strong>Cooperation Format:</strong> ${partner.Cooperation_Format}</p>
-    
-    <h3>Strategic Assessment</h3>
-    <p>This partner offers ${partner.Potential_Value === 5 ? 'high' : partner.Potential_Value >= 3 ? 'medium' : 'limited'} strategic value for the OralScan Innovation Hub initiative.</p>
-  `;
-  
-  modal.style.display = 'block';
-}
-
-function showInstitutionModal(institution) {
-  const modal = document.getElementById('detailModal');
-  const modalBody = document.getElementById('modalBody');
-  
-  modalBody.innerHTML = `
-    <h2>${institution.Name}</h2>
-    <div style="margin-bottom: 16px;">
-      <span class="institution-type">${institution.Type}</span>
-      <span class="partner-score" style="margin-left: 16px;">Collaboration Potential: ${institution.Potential_Value}/6</span>
-    </div>
-    <p><strong>Country:</strong> ${institution.Country}</p>
-    <p><strong>Research Focus:</strong> ${institution.Focus}</p>
-    <p><strong>Current Activities:</strong> ${institution.Current_Activity}</p>
-    
-    <h3>Collaboration Opportunities</h3>
-    <p>This institution offers ${institution.Potential_Value >= 5 ? 'high' : 'medium'} potential for research collaboration and academic partnerships in the DACH region.</p>
-  `;
-  
-  modal.style.display = 'block';
-}
-
-// Downloads
-function initializeDownloads() {
-  document.getElementById('downloadSegments').addEventListener('click', () => downloadCSV('segments'));
-  document.getElementById('downloadChannels').addEventListener('click', () => downloadCSV('channels'));
-  document.getElementById('downloadPartners').addEventListener('click', () => downloadCSV('partners'));
-  document.getElementById('downloadAcademic').addEventListener('click', () => downloadCSV('academic'));
-  document.getElementById('downloadSupport').addEventListener('click', () => downloadCSV('support'));
-  document.getElementById('downloadRoadmap').addEventListener('click', () => downloadCSV('roadmap'));
-}
-
-function downloadCSV(type) {
-  // Simulate CSV download
-  let filename;
-  let data;
-  
-  switch(type) {
-    case 'segments':
-      filename = 'market_segments.csv';
-      data = 'Segment,Penetration %,Growth Potential,Description\n';
-      Object.keys(dashboardData.market_segments).forEach(segment => {
-        const s = dashboardData.market_segments[segment];
-        data += `"${segment}",${s.market_penetration},"${s.growth_potential}","${s.description}"\n`;
-      });
-      break;
-    case 'channels':
-      filename = 'distribution_channels.csv';
-      data = 'Channel,Market Reach %,Segments Reached,Providers\n';
-      Object.keys(dashboardData.distribution_channels).forEach(channel => {
-        const c = dashboardData.distribution_channels[channel];
-        data += `"${channel}",${c.market_reach},"${c.segments_reached.join('; ')}","${c.providers.join('; ')}"\n`;
-      });
-      break;
-    case 'partners':
-      filename = 'strategic_partners.csv';
-      data = 'Name,Type,Category,Country,Potential Value,Strengths\n';
-      dashboardData.strategic_partners.forEach(partner => {
-        data += `"${partner.Name}","${partner.Type}","${partner.Category}","${partner.Country}",${partner.Potential_Value},"${partner.Strengths}"\n`;
-      });
-      break;
-    case 'academic':
-      filename = 'academic_institutions.csv';
-      data = 'Name,Country,Type,Potential Value,Focus,Current Activity\n';
-      dashboardData.academic_institutions.forEach(inst => {
-        data += `"${inst.Name}","${inst.Country}","${inst.Type}",${inst.Potential_Value},"${inst.Focus}","${inst.Current_Activity}"\n`;
-      });
-      break;
-    case 'support':
-      filename = 'support_comparison.csv';
-      data = 'Company,Multi-Level Support,Training Programs,Community Forums,Open Platforms,Developer Programs,User Recognition\n';
-      dashboardData.company_support.forEach(company => {
-        data += `"${company.Company}",${company['Multi-Level Support']},${company['Training Programs']},${company['Community Forums']},${company['Open Platforms']},${company['Developer Programs']},${company['User Recognition']}\n`;
-      });
-      break;
-    case 'roadmap':
-      filename = 'strategic_roadmap.csv';
-      data = 'Phase,Period,Title,Objectives,Activities,Key Partners,Success Metrics\n';
-      dashboardData.roadmap.forEach(phase => {
-        data += `"${phase.Phase}","${phase.Period}","${phase.Title}","${phase.Objectives.join('; ')}","${phase.Activities.join('; ')}","${phase.Key_Partners.join('; ')}","${phase.Success_Metrics.join('; ')}"\n`;
-      });
-      break;
-  }
-  
-  // Create and trigger download
-  const blob = new Blob([data], { type: 'text/csv' });
-  const url = window.URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  window.URL.revokeObjectURL(url);
-}
-
-// Roadmap
-function initializeRoadmap() {
-  const timelineBtns = document.querySelectorAll('.timeline-btn');
-  
-  timelineBtns.forEach((btn, index) => {
-    btn.addEventListener('click', function() {
-      // Update active button
-      timelineBtns.forEach(b => b.classList.remove('active'));
-      this.classList.add('active');
-      
-      // Show phase details
-      showPhaseDetails(index);
-    });
-  });
-  
-  // Show initial phase
-  showPhaseDetails(0);
-}
-
-function showPhaseDetails(phaseIndex) {
-  const phase = dashboardData.roadmap[phaseIndex];
-  const container = document.getElementById('phaseDetails');
-  
-  container.innerHTML = `
-    <div class="phase-card">
-      <div class="phase-header">
-        <h3>${phase.Title}</h3>
-        <span class="phase-period">${phase.Period}</span>
-      </div>
-      
-      <div class="phase-section">
-        <h4>Objectives</h4>
-        <ul class="phase-list">
-          ${phase.Objectives.map(obj => `<li>${obj}</li>`).join('')}
-        </ul>
-      </div>
-      
-      <div class="phase-section">
-        <h4>Key Activities</h4>
-        <ul class="phase-list">
-          ${phase.Activities.map(activity => `<li>${activity}</li>`).join('')}
-        </ul>
-      </div>
-      
-      <div class="phase-section">
-        <h4>Key Partners</h4>
-        <ul class="phase-list">
-          ${phase.Key_Partners.map(partner => `<li>${partner}</li>`).join('')}
-        </ul>
-      </div>
-      
-      <div class="phase-section">
-        <h4>Success Metrics</h4>
-        <ul class="phase-list">
-          ${phase.Success_Metrics.map(metric => `<li>${metric}</li>`).join('')}
-        </ul>
-      </div>
-    </div>
-  `;
-}
+    }, 100);
+});

@@ -3,512 +3,643 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>European Dental IOS Market Dashboard - DACH Region</title>
+    <title>DACH Dental Intraoral Scanner Market - Strategic Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="app.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <h2>European IOS Market Dashboard</h2>
-                <span class="nav-subtitle">DACH Region Analysis</span>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="header-content">
+                <h1>DACH Dental Scanner Market Dashboard</h1>
+                <div class="global-filters">
+                    <select id="countryFilter" class="form-control">
+                        <option value="all">All Countries</option>
+                        <option value="germany">Germany</option>
+                        <option value="austria">Austria</option>
+                        <option value="switzerland">Switzerland</option>
+                    </select>
+                    <select id="confidenceFilter" class="form-control">
+                        <option value="all">All Confidence Levels</option>
+                        <option value="high">High Confidence</option>
+                        <option value="medium">Medium Confidence</option>
+                        <option value="low">Low Confidence</option>
+                    </select>
+                </div>
             </div>
-            <div class="nav-menu">
-                <button class="nav-item btn btn--secondary btn--sm" data-page="market-overview">Market Overview</button>
-                <button class="nav-item btn btn--secondary btn--sm" data-page="distribution">Distribution</button>
-                <button class="nav-item btn btn--secondary btn--sm" data-page="partners">Partners</button>
-                <button class="nav-item btn btn--secondary btn--sm" data-page="academic">Academic</button>
-                <button class="nav-item btn btn--secondary btn--sm" data-page="support">Support</button>
-                <button class="nav-item btn btn--secondary btn--sm" data-page="roadmap">Roadmap</button>
-            </div>
-        </div>
-    </nav>
+        </header>
 
-    <!-- Page 1: Market Overview & Segmentation -->
-    <div id="market-overview" class="page active">
-        <div class="container">
-            <div class="page-header">
-                <h1>Market Overview & Segmentation</h1>
-                <p class="text-secondary">Key market statistics and segment analysis for the DACH region</p>
+        <!-- Navigation -->
+        <nav class="dashboard-nav">
+            <div class="nav-content">
+                <button class="nav-btn active" data-section="executive">Executive Summary</button>
+                <button class="nav-btn" data-section="segmentation">Market Segments</button>
+                <button class="nav-btn" data-section="channels">Distribution Channels</button>
+                <button class="nav-btn" data-section="players">Key Players</button>
+                <button class="nav-btn" data-section="academic">Academic Landscape</button>
+                <button class="nav-btn" data-section="support">Support Models</button>
+                <button class="nav-btn" data-section="roadmap">Strategic Roadmap</button>
+                <button class="nav-btn" data-section="network">Network Graph</button>
             </div>
-            
-            <div class="stats-grid">
-                <div class="stat-card card">
-                    <div class="card__body">
-                        <h3>8-10%</h3>
-                        <p>Market Penetration in German Practices</p>
-                    </div>
-                </div>
-                <div class="stat-card card">
-                    <div class="card__body">
-                        <h3>Double-Digit</h3>
-                        <p>Growth Rates</p>
-                    </div>
-                </div>
-                <div class="stat-card card">
-                    <div class="card__body">
-                        <h3>6</h3>
-                        <p>Key Market Segments</p>
-                    </div>
-                </div>
-                <div class="stat-card card">
-                    <div class="card__body">
-                        <h3>DACH</h3>
-                        <p>Focus Region</p>
-                    </div>
-                </div>
-            </div>
+        </nav>
 
-            <div class="content-grid">
-                <div class="chart-section">
-                    <div class="card">
-                        <div class="card__header">
-                            <h3>Market Penetration by Segment</h3>
-                        </div>
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Executive Summary Section -->
+            <section id="executive" class="dashboard-section active">
+                <h2>Executive Summary</h2>
+                <div class="summary-grid">
+                    <div class="card metric-card">
                         <div class="card__body">
-                            <canvas id="penetrationChart" height="300"></canvas>
+                            <h3>European Market Size (2024)</h3>
+                            <div class="metric-value">€180.4M</div>
+                            <div class="confidence-indicator high">High Confidence</div>
+                            <div class="metric-source" title="Source: Persistence Market Research">📊 Source</div>
+                            <p class="metric-detail">Projected to reach €390.2M by 2031 (11.6% CAGR)</p>
                         </div>
                     </div>
-                </div>
-
-                <div class="filter-section">
-                    <div class="card">
-                        <div class="card__header">
-                            <h3>Filters</h3>
-                        </div>
+                    <div class="card metric-card">
                         <div class="card__body">
-                            <div class="form-group">
-                                <label class="form-label">Filter by Growth Potential</label>
-                                <select id="growthFilter" class="form-control">
-                                    <option value="all">All Segments</option>
-                                    <option value="High">High Growth</option>
-                                    <option value="Medium-High">Medium-High Growth</option>
-                                    <option value="Stable">Stable Growth</option>
-                                    <option value="Mature market">Mature Market</option>
-                                </select>
-                            </div>
-                            <button id="downloadSegments" class="btn btn--primary btn--sm mt-8">Download Data</button>
+                            <h3>Germany Market Share</h3>
+                            <div class="metric-value">32%</div>
+                            <div class="confidence-indicator high">High Confidence</div>
+                            <div class="metric-source" title="Source: Multiple industry reports">📊 Source</div>
+                            <p class="metric-detail">8-10% penetration rate in dental practices</p>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="segments-table">
-                <div class="card">
-                    <div class="card__header">
-                        <h3>Market Segments Details</h3>
-                    </div>
-                    <div class="card__body">
-                        <div class="table-responsive">
-                            <table id="segmentsTable" class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Segment</th>
-                                        <th>Penetration %</th>
-                                        <th>Growth Potential</th>
-                                        <th>Key Needs</th>
-                                        <th>Current Support</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Page 2: Sales & Distribution Channels -->
-    <div id="distribution" class="page">
-        <div class="container">
-            <div class="page-header">
-                <h1>Sales & Distribution Channels</h1>
-                <p class="text-secondary">Analysis of distribution channels and their market effectiveness</p>
-            </div>
-
-            <div class="content-grid">
-                <div class="chart-section">
-                    <div class="card">
-                        <div class="card__header">
-                            <h3>Distribution Channel Market Reach</h3>
-                        </div>
+                    <div class="card metric-card">
                         <div class="card__body">
-                            <canvas id="distributionChart" height="300"></canvas>
+                            <h3>Global Market Context</h3>
+                            <div class="metric-value">$744.7M</div>
+                            <div class="confidence-indicator high">High Confidence</div>
+                            <div class="metric-source" title="Source: Future Market Insights">📊 Source</div>
+                            <p class="metric-detail">Growing to $1,548M by 2034 (7.6% CAGR)</p>
                         </div>
                     </div>
-                </div>
-
-                <div class="filter-section">
-                    <div class="card">
-                        <div class="card__header">
-                            <h3>Channel Filters</h3>
-                        </div>
+                    <div class="card metric-card">
                         <div class="card__body">
-                            <div class="form-group">
-                                <label class="form-label">Filter by Market Reach</label>
-                                <select id="reachFilter" class="form-control">
-                                    <option value="all">All Channels</option>
-                                    <option value="high">High Reach (>60%)</option>
-                                    <option value="medium">Medium Reach (40-60%)</option>
-                                    <option value="low">Low Reach (<40%)</option>
-                                </select>
-                            </div>
-                            <button id="downloadChannels" class="btn btn--primary btn--sm mt-8">Download Data</button>
+                            <h3>Investment Need</h3>
+                            <div class="metric-value">€2.5-4M</div>
+                            <div class="confidence-indicator medium">Medium Confidence</div>
+                            <div class="metric-source" title="Source: Strategic analysis">📊 Source</div>
+                            <p class="metric-detail">24-month market entry strategy</p>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="channels-table">
-                <div class="card">
-                    <div class="card__header">
-                        <h3>Channel Details & Comparison</h3>
-                    </div>
-                    <div class="card__body">
-                        <div class="table-responsive">
-                            <table id="channelsTable" class="data-table">
-                                <thead>
-                                    <tr>
-                                        <th>Channel</th>
-                                        <th>Market Reach %</th>
-                                        <th>Segments Reached</th>
-                                        <th>Key Providers</th>
-                                        <th>Advantages</th>
-                                        <th>Challenges</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Page 3: Key Industry Players & Strategic Partners -->
-    <div id="partners" class="page">
-        <div class="container">
-            <div class="page-header">
-                <h1>Key Industry Players & Strategic Partners</h1>
-                <p class="text-secondary">Partnership potential analysis and company profiles</p>
-            </div>
-
-            <div class="content-grid">
-                <div class="chart-section">
-                    <div class="card">
-                        <div class="card__header">
-                            <h3>Partnership Potential Assessment</h3>
-                        </div>
-                        <div class="card__body">
-                            <canvas id="partnershipChart" height="300"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="filter-section">
-                    <div class="card">
-                        <div class="card__header">
-                            <h3>Partner Filters</h3>
-                        </div>
-                        <div class="card__body">
-                            <div class="form-group">
-                                <label class="form-label">Filter by Type</label>
-                                <select id="partnerTypeFilter" class="form-control">
-                                    <option value="all">All Partners</option>
-                                    <option value="Strategic Partner">Strategic Partners</option>
-                                    <option value="Major OEM">Major OEMs</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Filter by Country</label>
-                                <select id="countryFilter" class="form-control">
-                                    <option value="all">All Countries</option>
-                                    <option value="Germany">Germany</option>
-                                    <option value="USA">USA</option>
-                                    <option value="France">France</option>
-                                    <option value="Denmark">Denmark</option>
-                                </select>
-                            </div>
-                            <button id="downloadPartners" class="btn btn--primary btn--sm mt-8">Download Data</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="partners-tabs">
-                <div class="tab-navigation">
-                    <button class="tab-btn active" data-tab="strategic">Strategic Partners</button>
-                    <button class="tab-btn" data-tab="oems">Major OEMs</button>
-                </div>
-
-                <div id="strategic-tab" class="tab-content active">
-                    <div class="partners-grid" id="strategicPartners"></div>
-                </div>
-
-                <div id="oems-tab" class="tab-content">
-                    <div class="partners-grid" id="oemPartners"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Page 4: Academic & Research Landscape -->
-    <div id="academic" class="page">
-        <div class="container">
-            <div class="page-header">
-                <h1>Academic & Research Landscape</h1>
-                <p class="text-secondary">Universities, research institutes, and innovation clusters in DACH region</p>
-            </div>
-
-            <div class="content-grid">
-                <div class="chart-section">
-                    <div class="card">
-                        <div class="card__header">
-                            <h3>Academic Institutions by Country</h3>
-                        </div>
-                        <div class="card__body">
-                            <canvas id="academicChart" height="300"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="filter-section">
-                    <div class="card">
-                        <div class="card__header">
-                            <h3>Institution Filters</h3>
-                        </div>
-                        <div class="card__body">
-                            <div class="form-group">
-                                <label class="form-label">Filter by Type</label>
-                                <select id="institutionTypeFilter" class="form-control">
-                                    <option value="all">All Types</option>
-                                    <option value="University">Universities</option>
-                                    <option value="Research Institute">Research Institutes</option>
-                                    <option value="Professional Network">Professional Networks</option>
-                                    <option value="Innovation Cluster">Innovation Clusters</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Filter by Country</label>
-                                <select id="academicCountryFilter" class="form-control">
-                                    <option value="all">All Countries</option>
-                                    <option value="Germany">Germany</option>
-                                    <option value="Austria">Austria</option>
-                                    <option value="Switzerland">Switzerland</option>
-                                    <option value="International">International</option>
-                                </select>
-                            </div>
-                            <button id="downloadAcademic" class="btn btn--primary btn--sm mt-8">Download Data</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="academic-sections">
-                <div class="country-section">
-                    <h3>Germany</h3>
-                    <div class="institutions-grid" id="germanyInstitutions"></div>
-                </div>
-                <div class="country-section">
-                    <h3>Austria</h3>
-                    <div class="institutions-grid" id="austriaInstitutions"></div>
-                </div>
-                <div class="country-section">
-                    <h3>Switzerland</h3>
-                    <div class="institutions-grid" id="switzerlandInstitutions"></div>
-                </div>
-                <div class="country-section">
-                    <h3>International</h3>
-                    <div class="institutions-grid" id="internationalInstitutions"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Page 5: Support & Community Models -->
-    <div id="support" class="page">
-        <div class="container">
-            <div class="page-header">
-                <h1>Support & Community Models</h1>
-                <p class="text-secondary">Analysis of customer support strategies and community building approaches</p>
-            </div>
-
-            <div class="support-categories">
-                <div class="category-section">
-                    <h3>Technical Support</h3>
-                    <div class="support-items">
-                        <div class="support-item card">
-                            <div class="card__body">
-                                <h4>Multi-Level Support</h4>
-                                <p>Tiered support structures from basic help desk to specialized technical assistance</p>
-                            </div>
-                        </div>
-                        <div class="support-item card">
-                            <div class="card__body">
-                                <h4>Training Programs</h4>
-                                <p>Comprehensive training for users, from basic operation to advanced techniques</p>
-                            </div>
-                        </div>
-                        <div class="support-item card">
-                            <div class="card__body">
-                                <h4>Community Forums</h4>
-                                <p>User-driven support communities and knowledge sharing platforms</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="category-section">
-                    <h3>Open Source Initiatives</h3>
-                    <div class="support-items">
-                        <div class="support-item card">
-                            <div class="card__body">
-                                <h4>Open Platforms</h4>
-                                <p>Open APIs and platforms enabling third-party development</p>
-                            </div>
-                        </div>
-                        <div class="support-item card">
-                            <div class="card__body">
-                                <h4>Developer Programs</h4>
-                                <p>Structured programs supporting third-party developers and integrators</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="category-section">
-                    <h3>Community Building</h3>
-                    <div class="support-items">
-                        <div class="support-item card">
-                            <div class="card__body">
-                                <h4>User Recognition</h4>
-                                <p>Programs recognizing and highlighting successful users and use cases</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="comparison-section">
-                <div class="card">
-                    <div class="card__header">
-                        <h3>Company Support Model Comparison</h3>
-                    </div>
-                    <div class="card__body">
-                        <canvas id="supportChart" height="400"></canvas>
-                        <button id="downloadSupport" class="btn btn--primary btn--sm mt-8">Download Comparison Data</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Page 6: Strategic Recommendations & Roadmap -->
-    <div id="roadmap" class="page">
-        <div class="container">
-            <div class="page-header">
-                <h1>Strategic Recommendations & Roadmap</h1>
-                <p class="text-secondary">4-phase roadmap for partnership development and market entry</p>
-            </div>
-
-            <div class="roadmap-timeline">
-                <div class="timeline-nav">
-                    <button class="timeline-btn active" data-phase="0">Phase 1</button>
-                    <button class="timeline-btn" data-phase="1">Phase 2</button>
-                    <button class="timeline-btn" data-phase="2">Phase 3</button>
-                    <button class="timeline-btn" data-phase="3">Phase 4</button>
-                </div>
-
-                <div class="phase-details" id="phaseDetails">
-                    <!-- Phase details will be populated by JavaScript -->
-                </div>
-            </div>
-
-            <div class="roadmap-filters">
-                <div class="card">
-                    <div class="card__header">
-                        <h3>Roadmap Filters</h3>
-                    </div>
-                    <div class="card__body">
-                        <div class="form-group">
-                            <label class="form-label">Filter by Phase</label>
-                            <select id="phaseFilter" class="form-control">
-                                <option value="all">All Phases</option>
-                                <option value="Phase 1">Phase 1 - Preparation</option>
-                                <option value="Phase 2">Phase 2 - Development</option>
-                                <option value="Phase 3">Phase 3 - Launch</option>
-                                <option value="Phase 4">Phase 4 - Growth</option>
-                            </select>
-                        </div>
-                        <button id="downloadRoadmap" class="btn btn--primary btn--sm mt-8">Download Roadmap</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="recommendations-section">
-                <div class="card">
-                    <div class="card__header">
-                        <h3>Key Strategic Recommendations</h3>
-                    </div>
-                    <div class="card__body">
-                        <div class="recommendations-grid">
-                            <div class="recommendation-item">
-                                <h4>Partnership Focus</h4>
-                                <p>Prioritize strategic partnerships with specialized companies over competing with established OEMs</p>
-                            </div>
-                            <div class="recommendation-item">
-                                <h4>Market Entry</h4>
-                                <p>Leverage DACH region's high research collaboration potential and innovation clusters</p>
-                            </div>
-                            <div class="recommendation-item">
-                                <h4>Community Building</h4>
-                                <p>Develop open-source ecosystem with strong community support and developer programs</p>
-                            </div>
-                            <div class="recommendation-item">
-                                <h4>Distribution Strategy</h4>
-                                <p>Combine authorized distributors for reach with direct sales for key accounts</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>Data Sources</h4>
+                <div class="key-insights">
+                    <h3>Key Strategic Insights</h3>
                     <ul>
-                        <li>Industry reports and market analysis</li>
-                        <li>Company websites and official documentation</li>
-                        <li>Academic publications and research papers</li>
-                        <li>Expert interviews and market surveys</li>
+                        <li>DACH region represents 35%+ of European market opportunity</li>
+                        <li>Low penetration rates (8-10%) suggest significant growth potential</li>
+                        <li>Academic partnerships critical for validation and adoption</li>
+                        <li>Multiple partnership opportunities across OEMs, distributors, and startups</li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h4>Report Information</h4>
-                    <p><strong>Title:</strong> European Intraoral Scanner Market Analysis</p>
-                    <p><strong>Focus:</strong> DACH Region (Germany, Austria, Switzerland)</p>
-                    <p><strong>Date:</strong> June 2025</p>
-                </div>
-            </div>
-        </div>
-    </footer>
+            </section>
 
-    <!-- Modal for detailed views -->
-    <div id="detailModal" class="modal">
-        <div class="modal-content">
-            <span class="modal-close">&times;</span>
-            <div id="modalBody"></div>
-        </div>
+            <!-- Market Segmentation Section -->
+            <section id="segmentation" class="dashboard-section">
+                <h2>Market Segmentation & Stakeholders</h2>
+                <div class="segment-container">
+                    <div class="chart-container">
+                        <canvas id="segmentChart"></canvas>
+                    </div>
+                    <div class="segment-details">
+                        <div class="card">
+                            <div class="card__body">
+                                <h3>Segment Overview</h3>
+                                <div class="segment-list">
+                                    <div class="segment-item" data-segment="practices">
+                                        <div class="segment-header">
+                                            <span class="segment-name">Dental Practices</span>
+                                            <span class="segment-size">45%</span>
+                                            <span class="confidence-indicator high">High</span>
+                                        </div>
+                                        <div class="segment-details-content">
+                                            <p><strong>Key Needs:</strong> Efficiency, Precision, Patient comfort</p>
+                                            <p><strong>Gaps:</strong> Training, Workflow integration, Cost barriers</p>
+                                        </div>
+                                    </div>
+                                    <div class="segment-item" data-segment="labs">
+                                        <div class="segment-header">
+                                            <span class="segment-name">Dental Laboratories</span>
+                                            <span class="segment-size">25%</span>
+                                            <span class="confidence-indicator medium">Medium</span>
+                                        </div>
+                                        <div class="segment-details-content">
+                                            <p><strong>Role:</strong> Data receivers + multipliers</p>
+                                            <p><strong>Trend:</strong> Increasing own scanner adoption</p>
+                                        </div>
+                                    </div>
+                                    <div class="segment-item" data-segment="universities">
+                                        <div class="segment-header">
+                                            <span class="segment-name">Universities</span>
+                                            <span class="segment-size">15%</span>
+                                            <span class="confidence-indicator high">High</span>
+                                        </div>
+                                        <div class="segment-details-content">
+                                            <p><strong>Role:</strong> R&D, validation, talent pipeline</p>
+                                            <p><strong>Key:</strong> Uni Gießen, TU Dresden, Fraunhofer</p>
+                                        </div>
+                                    </div>
+                                    <div class="segment-item" data-segment="oems">
+                                        <div class="segment-header">
+                                            <span class="segment-name">OEMs</span>
+                                            <span class="segment-size">15%</span>
+                                            <span class="confidence-indicator high">High</span>
+                                        </div>
+                                        <div class="segment-details-content">
+                                            <p><strong>Leaders:</strong> Align, 3Shape, Dentsply Sirona, Medit</p>
+                                            <p><strong>Focus:</strong> Innovation and market penetration</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Distribution Channels Section -->
+            <section id="channels" class="dashboard-section">
+                <h2>Sales & Distribution Channels</h2>
+                <div class="channels-container">
+                    <div class="chart-container">
+                        <canvas id="channelsChart"></canvas>
+                    </div>
+                    <div class="channels-matrix">
+                        <h3>Channel-Segment Matrix</h3>
+                        <table class="channels-table">
+                            <thead>
+                                <tr>
+                                    <th>Channel</th>
+                                    <th>Practices</th>
+                                    <th>Labs</th>
+                                    <th>Universities</th>
+                                    <th>Confidence</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Direct Sales</strong></td>
+                                    <td class="channel-strength high">High</td>
+                                    <td class="channel-strength medium">Medium</td>
+                                    <td class="channel-strength high">High</td>
+                                    <td><span class="confidence-indicator high">High</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Henry Schein</strong></td>
+                                    <td class="channel-strength high">High</td>
+                                    <td class="channel-strength high">High</td>
+                                    <td class="channel-strength medium">Medium</td>
+                                    <td><span class="confidence-indicator high">High</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>orangedental</strong></td>
+                                    <td class="channel-strength high">High</td>
+                                    <td class="channel-strength medium">Medium</td>
+                                    <td class="channel-strength low">Low</td>
+                                    <td><span class="confidence-indicator high">High</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Academic Programs</strong></td>
+                                    <td class="channel-strength low">Low</td>
+                                    <td class="channel-strength low">Low</td>
+                                    <td class="channel-strength high">High</td>
+                                    <td><span class="confidence-indicator high">High</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Players Section -->
+            <section id="players" class="dashboard-section">
+                <h2>Key Industry Players & Strategic Partners</h2>
+                <div class="players-grid">
+                    <div class="player-card card" data-player="align">
+                        <div class="card__body">
+                            <h3>Align Technology</h3>
+                            <div class="player-metrics">
+                                <div class="metric">Revenue: $4.0B (2024)</div>
+                                <div class="metric">Scanners: 100,000+ iTero globally</div>
+                                <div class="confidence-indicator high">High Confidence</div>
+                            </div>
+                            <div class="strategic-axes">
+                                <div class="axis">
+                                    <span>R&D Fit:</span>
+                                    <div class="axis-bar"><div class="axis-fill" style="width: 70%"></div></div>
+                                    <span>7/10</span>
+                                </div>
+                                <div class="axis">
+                                    <span>Market Access:</span>
+                                    <div class="axis-bar"><div class="axis-fill" style="width: 90%"></div></div>
+                                    <span>9/10</span>
+                                </div>
+                                <div class="axis">
+                                    <span>Integration:</span>
+                                    <div class="axis-bar"><div class="axis-fill" style="width: 60%"></div></div>
+                                    <span>6/10</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="player-card card" data-player="3shape">
+                        <div class="card__body">
+                            <h3>3Shape</h3>
+                            <div class="player-metrics">
+                                <div class="metric">Revenue: DKK 2.6B (2021)</div>
+                                <div class="metric">Unite Platform: 1000+ labs</div>
+                                <div class="confidence-indicator high">High Confidence</div>
+                            </div>
+                            <div class="strategic-axes">
+                                <div class="axis">
+                                    <span>R&D Fit:</span>
+                                    <div class="axis-bar"><div class="axis-fill" style="width: 80%"></div></div>
+                                    <span>8/10</span>
+                                </div>
+                                <div class="axis">
+                                    <span>Market Access:</span>
+                                    <div class="axis-bar"><div class="axis-fill" style="width: 80%"></div></div>
+                                    <span>8/10</span>
+                                </div>
+                                <div class="axis">
+                                    <span>Integration:</span>
+                                    <div class="axis-bar"><div class="axis-fill" style="width: 90%"></div></div>
+                                    <span>9/10</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="player-card card" data-player="acteon">
+                        <div class="card__body">
+                            <h3>Acteon Group</h3>
+                            <div class="player-metrics">
+                                <div class="metric">French dental imaging leader</div>
+                                <div class="metric">No current IOS offering</div>
+                                <div class="confidence-indicator high">High Confidence</div>
+                            </div>
+                            <div class="strategic-axes">
+                                <div class="axis">
+                                    <span>R&D Fit:</span>
+                                    <div class="axis-bar"><div class="axis-fill" style="width: 80%"></div></div>
+                                    <span>8/10</span>
+                                </div>
+                                <div class="axis">
+                                    <span>Market Access:</span>
+                                    <div class="axis-bar"><div class="axis-fill" style="width: 70%"></div></div>
+                                    <span>7/10</span>
+                                </div>
+                                <div class="axis">
+                                    <span>Integration:</span>
+                                    <div class="axis-bar"><div class="axis-fill" style="width: 80%"></div></div>
+                                    <span>8/10</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="player-card card" data-player="orangedental">
+                        <div class="card__body">
+                            <h3>orangedental</h3>
+                            <div class="player-metrics">
+                                <div class="metric">DACH specialist, Biberach</div>
+                                <div class="metric">Fussen S6500 distributor</div>
+                                <div class="confidence-indicator high">High Confidence</div>
+                            </div>
+                            <div class="strategic-axes">
+                                <div class="axis">
+                                    <span>R&D Fit:</span>
+                                    <div class="axis-bar"><div class="axis-fill" style="width: 60%"></div></div>
+                                    <span>6/10</span>
+                                </div>
+                                <div class="axis">
+                                    <span>Market Access:</span>
+                                    <div class="axis-bar"><div class="axis-fill" style="width: 90%"></div></div>
+                                    <span>9/10</span>
+                                </div>
+                                <div class="axis">
+                                    <span>Integration:</span>
+                                    <div class="axis-bar"><div class="axis-fill" style="width: 70%"></div></div>
+                                    <span>7/10</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="player-card card" data-player="dentaltwin">
+                        <div class="card__body">
+                            <h3>DentalTwin</h3>
+                            <div class="player-metrics">
+                                <div class="metric">Munich-based AI prosthodontics</div>
+                                <div class="metric">Funding: €20M+</div>
+                                <div class="confidence-indicator high">High Confidence</div>
+                            </div>
+                            <div class="strategic-axes">
+                                <div class="axis">
+                                    <span>R&D Fit:</span>
+                                    <div class="axis-bar"><div class="axis-fill" style="width: 90%"></div></div>
+                                    <span>9/10</span>
+                                </div>
+                                <div class="axis">
+                                    <span>Market Access:</span>
+                                    <div class="axis-bar"><div class="axis-fill" style="width: 50%"></div></div>
+                                    <span>5/10</span>
+                                </div>
+                                <div class="axis">
+                                    <span>Integration:</span>
+                                    <div class="axis-bar"><div class="axis-fill" style="width: 80%"></div></div>
+                                    <span>8/10</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="player-card card" data-player="pearl">
+                        <div class="card__body">
+                            <h3>Pearl</h3>
+                            <div class="player-metrics">
+                                <div class="metric">FDA-cleared 2D+3D dental AI</div>
+                                <div class="metric">Funding: $58M</div>
+                                <div class="confidence-indicator high">High Confidence</div>
+                            </div>
+                            <div class="strategic-axes">
+                                <div class="axis">
+                                    <span>R&D Fit:</span>
+                                    <div class="axis-bar"><div class="axis-fill" style="width: 90%"></div></div>
+                                    <span>9/10</span>
+                                </div>
+                                <div class="axis">
+                                    <span>Market Access:</span>
+                                    <div class="axis-bar"><div class="axis-fill" style="width: 80%"></div></div>
+                                    <span>8/10</span>
+                                </div>
+                                <div class="axis">
+                                    <span>Integration:</span>
+                                    <div class="axis-bar"><div class="axis-fill" style="width: 80%"></div></div>
+                                    <span>8/10</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Academic Landscape Section -->
+            <section id="academic" class="dashboard-section">
+                <h2>Academic & Research Landscape</h2>
+                <div class="academic-container">
+                    <div class="academic-map">
+                        <h3>DACH Research Centers</h3>
+                        <div class="country-sections">
+                            <div class="country-section">
+                                <h4>🇩🇪 Germany</h4>
+                                <div class="institution-cards">
+                                    <div class="institution-card card">
+                                        <div class="card__body">
+                                            <h5>University Giessen</h5>
+                                            <p><strong>Contact:</strong> Prof. Bernd Wöstmann</p>
+                                            <p><strong>Focus:</strong> Digital impression validation</p>
+                                            <div class="confidence-indicator high">High Confidence</div>
+                                        </div>
+                                    </div>
+                                    <div class="institution-card card">
+                                        <div class="card__body">
+                                            <h5>TU Dresden</h5>
+                                            <p><strong>Project:</strong> EndoScan3D (2022-2025)</p>
+                                            <p><strong>Partner:</strong> Fraunhofer HHI</p>
+                                            <div class="confidence-indicator high">High Confidence</div>
+                                        </div>
+                                    </div>
+                                    <div class="institution-card card">
+                                        <div class="card__body">
+                                            <h5>Fraunhofer IGD</h5>
+                                            <p><strong>Location:</strong> Darmstadt</p>
+                                            <p><strong>Legacy:</strong> exocad birthplace (2010)</p>
+                                            <div class="confidence-indicator high">High Confidence</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="country-section">
+                                <h4>🇦🇹 Austria</h4>
+                                <div class="institution-cards">
+                                    <div class="institution-card card">
+                                        <div class="card__body">
+                                            <h5>AIT a-tron3D</h5>
+                                            <p><strong>Achievement:</strong> World's smallest 3D scanner</p>
+                                            <p><strong>License:</strong> GC Europe (Aadva IOS)</p>
+                                            <div class="confidence-indicator high">High Confidence</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="country-section">
+                                <h4>🇨🇭 Switzerland</h4>
+                                <div class="institution-cards">
+                                    <div class="institution-card card">
+                                        <div class="card__body">
+                                            <h5>ETH Zurich</h5>
+                                            <p><strong>Strength:</strong> Early CAD/CAM adoption</p>
+                                            <p><strong>Opportunity:</strong> Digital dentistry education</p>
+                                            <div class="confidence-indicator medium">Medium Confidence</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Support Models Section -->
+            <section id="support" class="dashboard-section">
+                <h2>Support & Community Models</h2>
+                <div class="support-comparison">
+                    <table class="support-table">
+                        <thead>
+                            <tr>
+                                <th>Vendor</th>
+                                <th>Training Programs</th>
+                                <th>Community</th>
+                                <th>Open Source</th>
+                                <th>Support Tiers</th>
+                                <th>Confidence</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>3Shape</strong></td>
+                                <td>Academy + Unite Platform</td>
+                                <td>1000+ labs integrated</td>
+                                <td>Partial (STL export)</td>
+                                <td>Premium/Standard</td>
+                                <td><span class="confidence-indicator high">High</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Medit</strong></td>
+                                <td>Free software suite</td>
+                                <td>Facebook groups (30K+)</td>
+                                <td>Export formats</td>
+                                <td>Community-driven</td>
+                                <td><span class="confidence-indicator high">High</span></td>
+                            </tr>
+                            <tr>
+                                <td><strong>Align</strong></td>
+                                <td>iTero Academy</td>
+                                <td>KOL programs</td>
+                                <td>Closed system</td>
+                                <td>Tiered support</td>
+                                <td><span class="confidence-indicator high">High</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="support-insights">
+                    <h3>Community Model Insights</h3>
+                    <div class="insights-grid">
+                        <div class="card">
+                            <div class="card__body">
+                                <h4>Training Excellence</h4>
+                                <p>3Shape and Align lead with comprehensive academies. Opportunity for more hands-on, practical training programs.</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card__body">
+                                <h4>Community Engagement</h4>
+                                <p>Medit's Facebook success shows value of informal communities. Consider multi-platform approach.</p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card__body">
+                                <h4>Open Source Gap</h4>
+                                <p>Limited open-source initiatives create opportunity for community-driven development.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Strategic Roadmap Section -->
+            <section id="roadmap" class="dashboard-section">
+                <h2>Strategic Recommendations & Roadmap</h2>
+                <div class="roadmap-container">
+                    <div class="timeline">
+                        <div class="phase-block" data-phase="1">
+                            <div class="phase-header">
+                                <h3>Phase 1: Foundation Building</h3>
+                                <span class="phase-timeline">Months 1-6</span>
+                                <span class="confidence-indicator high">High Confidence</span>
+                            </div>
+                            <ul class="phase-actions">
+                                <li>Validate partnerships with Acteon, orangedental</li>
+                                <li>Establish Academic Advisory Board</li>
+                                <li>Secure conference presence (IDS, Dental events)</li>
+                                <li>Submit funding applications</li>
+                            </ul>
+                        </div>
+                        <div class="phase-block" data-phase="2">
+                            <div class="phase-header">
+                                <h3>Phase 2: MVP Development</h3>
+                                <span class="phase-timeline">Months 6-12</span>
+                                <span class="confidence-indicator high">High Confidence</span>
+                            </div>
+                            <ul class="phase-actions">
+                                <li>Begin co-engineering with key partners</li>
+                                <li>Launch beta program with select practices</li>
+                                <li>Establish IP protection framework</li>
+                                <li>Build community platform</li>
+                            </ul>
+                        </div>
+                        <div class="phase-block" data-phase="3">
+                            <div class="phase-header">
+                                <h3>Phase 3: Market Launch</h3>
+                                <span class="phase-timeline">Months 12-18</span>
+                                <span class="confidence-indicator high">High Confidence</span>
+                            </div>
+                            <ul class="phase-actions">
+                                <li>Secure primary distribution partner</li>
+                                <li>Integrate AI capabilities (Pearl partnership)</li>
+                                <li>Expand academic network</li>
+                                <li>Execute press and marketing campaign</li>
+                            </ul>
+                        </div>
+                        <div class="phase-block" data-phase="4">
+                            <div class="phase-header">
+                                <h3>Phase 4: Scale & Expand</h3>
+                                <span class="phase-timeline">Months 18-24+</span>
+                                <span class="confidence-indicator medium">Medium Confidence</span>
+                            </div>
+                            <ul class="phase-actions">
+                                <li>Geographic expansion beyond DACH</li>
+                                <li>Product evolution and enhancement</li>
+                                <li>Community sustainability programs</li>
+                                <li>Evaluate strategic exit opportunities</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="investment-summary">
+                        <h3>Investment Requirements</h3>
+                        <div class="investment-grid">
+                            <div class="investment-item">
+                                <span class="investment-label">Total (24 months)</span>
+                                <span class="investment-value">€2.5-4M</span>
+                                <span class="confidence-indicator medium">Medium</span>
+                            </div>
+                            <div class="investment-breakdown">
+                                <div class="breakdown-item">R&D: €1.5M</div>
+                                <div class="breakdown-item">Partnerships: €0.5M</div>
+                                <div class="breakdown-item">Operations: €1M</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Network Graph Section -->
+            <section id="network" class="dashboard-section">
+                <h2>Network Graph</h2>
+                <div class="network-container">
+                    <div class="network-controls">
+                        <button class="btn btn--secondary" id="resetNetwork">Reset View</button>
+                        <button class="btn btn--secondary" id="toggleLabels">Toggle Labels</button>
+                    </div>
+                    <div id="networkGraph" class="network-graph"></div>
+                    <div class="network-legend">
+                        <h4>Legend</h4>
+                        <div class="legend-items">
+                            <div class="legend-item">
+                                <div class="legend-color oem"></div>
+                                <span>OEMs</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color distributor"></div>
+                                <span>Distributors</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color startup"></div>
+                                <span>Startups</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color academic"></div>
+                                <span>Academic</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color segment"></div>
+                                <span>Segments</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
+
+    <script src="app.js"></script>
 </body>
 </html>
