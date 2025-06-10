@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>European Dental IOS Market Dashboard - DACH Region</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h2>European IOS Market Dashboard</h2>
+                <span class="nav-subtitle">DACH Region Analysis</span>
+            </div>
+            <div class="nav-menu">
+                <button class="nav-item btn btn--secondary btn--sm" data-page="market-overview">Market Overview</button>
+                <button class="nav-item btn btn--secondary btn--sm" data-page="distribution">Distribution</button>
+                <button class="nav-item btn btn--secondary btn--sm" data-page="partners">Partners</button>
+                <button class="nav-item btn btn--secondary btn--sm" data-page="academic">Academic</button>
+                <button class="nav-item btn btn--secondary btn--sm" data-page="support">Support</button>
+                <button class="nav-item btn btn--secondary btn--sm" data-page="roadmap">Roadmap</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page 1: Market Overview & Segmentation -->
+    <div id="market-overview" class="page active">
+        <div class="container">
+            <div class="page-header">
+                <h1>Market Overview & Segmentation</h1>
+                <p class="text-secondary">Key market statistics and segment analysis for the DACH region</p>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card card">
+                    <div class="card__body">
+                        <h3>8-10%</h3>
+                        <p>Market Penetration in German Practices</p>
+                    </div>
+                </div>
+                <div class="stat-card card">
+                    <div class="card__body">
+                        <h3>Double-Digit</h3>
+                        <p>Growth Rates</p>
+                    </div>
+                </div>
+                <div class="stat-card card">
+                    <div class="card__body">
+                        <h3>6</h3>
+                        <p>Key Market Segments</p>
+                    </div>
+                </div>
+                <div class="stat-card card">
+                    <div class="card__body">
+                        <h3>DACH</h3>
+                        <p>Focus Region</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-grid">
+                <div class="chart-section">
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Market Penetration by Segment</h3>
+                        </div>
+                        <div class="card__body">
+                            <canvas id="penetrationChart" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Filters</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="form-group">
+                                <label class="form-label">Filter by Growth Potential</label>
+                                <select id="growthFilter" class="form-control">
+                                    <option value="all">All Segments</option>
+                                    <option value="High">High Growth</option>
+                                    <option value="Medium-High">Medium-High Growth</option>
+                                    <option value="Stable">Stable Growth</option>
+                                    <option value="Mature market">Mature Market</option>
+                                </select>
+                            </div>
+                            <button id="downloadSegments" class="btn btn--primary btn--sm mt-8">Download Data</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="segments-table">
+                <div class="card">
+                    <div class="card__header">
+                        <h3>Market Segments Details</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="table-responsive">
+                            <table id="segmentsTable" class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Segment</th>
+                                        <th>Penetration %</th>
+                                        <th>Growth Potential</th>
+                                        <th>Key Needs</th>
+                                        <th>Current Support</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 2: Sales & Distribution Channels -->
+    <div id="distribution" class="page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Sales & Distribution Channels</h1>
+                <p class="text-secondary">Analysis of distribution channels and their market effectiveness</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="chart-section">
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Distribution Channel Market Reach</h3>
+                        </div>
+                        <div class="card__body">
+                            <canvas id="distributionChart" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Channel Filters</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="form-group">
+                                <label class="form-label">Filter by Market Reach</label>
+                                <select id="reachFilter" class="form-control">
+                                    <option value="all">All Channels</option>
+                                    <option value="high">High Reach (>60%)</option>
+                                    <option value="medium">Medium Reach (40-60%)</option>
+                                    <option value="low">Low Reach (<40%)</option>
+                                </select>
+                            </div>
+                            <button id="downloadChannels" class="btn btn--primary btn--sm mt-8">Download Data</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="channels-table">
+                <div class="card">
+                    <div class="card__header">
+                        <h3>Channel Details & Comparison</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="table-responsive">
+                            <table id="channelsTable" class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Channel</th>
+                                        <th>Market Reach %</th>
+                                        <th>Segments Reached</th>
+                                        <th>Key Providers</th>
+                                        <th>Advantages</th>
+                                        <th>Challenges</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 3: Key Industry Players & Strategic Partners -->
+    <div id="partners" class="page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Key Industry Players & Strategic Partners</h1>
+                <p class="text-secondary">Partnership potential analysis and company profiles</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="chart-section">
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Partnership Potential Assessment</h3>
+                        </div>
+                        <div class="card__body">
+                            <canvas id="partnershipChart" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Partner Filters</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="form-group">
+                                <label class="form-label">Filter by Type</label>
+                                <select id="partnerTypeFilter" class="form-control">
+                                    <option value="all">All Partners</option>
+                                    <option value="Strategic Partner">Strategic Partners</option>
+                                    <option value="Major OEM">Major OEMs</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Filter by Country</label>
+                                <select id="countryFilter" class="form-control">
+                                    <option value="all">All Countries</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="USA">USA</option>
+                                    <option value="France">France</option>
+                                    <option value="Denmark">Denmark</option>
+                                </select>
+                            </div>
+                            <button id="downloadPartners" class="btn btn--primary btn--sm mt-8">Download Data</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="partners-tabs">
+                <div class="tab-navigation">
+                    <button class="tab-btn active" data-tab="strategic">Strategic Partners</button>
+                    <button class="tab-btn" data-tab="oems">Major OEMs</button>
+                </div>
+
+                <div id="strategic-tab" class="tab-content active">
+                    <div class="partners-grid" id="strategicPartners"></div>
+                </div>
+
+                <div id="oems-tab" class="tab-content">
+                    <div class="partners-grid" id="oemPartners"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 4: Academic & Research Landscape -->
+    <div id="academic" class="page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Academic & Research Landscape</h1>
+                <p class="text-secondary">Universities, research institutes, and innovation clusters in DACH region</p>
+            </div>
+
+            <div class="content-grid">
+                <div class="chart-section">
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Academic Institutions by Country</h3>
+                        </div>
+                        <div class="card__body">
+                            <canvas id="academicChart" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-section">
+                    <div class="card">
+                        <div class="card__header">
+                            <h3>Institution Filters</h3>
+                        </div>
+                        <div class="card__body">
+                            <div class="form-group">
+                                <label class="form-label">Filter by Type</label>
+                                <select id="institutionTypeFilter" class="form-control">
+                                    <option value="all">All Types</option>
+                                    <option value="University">Universities</option>
+                                    <option value="Research Institute">Research Institutes</option>
+                                    <option value="Professional Network">Professional Networks</option>
+                                    <option value="Innovation Cluster">Innovation Clusters</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Filter by Country</label>
+                                <select id="academicCountryFilter" class="form-control">
+                                    <option value="all">All Countries</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="Austria">Austria</option>
+                                    <option value="Switzerland">Switzerland</option>
+                                    <option value="International">International</option>
+                                </select>
+                            </div>
+                            <button id="downloadAcademic" class="btn btn--primary btn--sm mt-8">Download Data</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="academic-sections">
+                <div class="country-section">
+                    <h3>Germany</h3>
+                    <div class="institutions-grid" id="germanyInstitutions"></div>
+                </div>
+                <div class="country-section">
+                    <h3>Austria</h3>
+                    <div class="institutions-grid" id="austriaInstitutions"></div>
+                </div>
+                <div class="country-section">
+                    <h3>Switzerland</h3>
+                    <div class="institutions-grid" id="switzerlandInstitutions"></div>
+                </div>
+                <div class="country-section">
+                    <h3>International</h3>
+                    <div class="institutions-grid" id="internationalInstitutions"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 5: Support & Community Models -->
+    <div id="support" class="page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Support & Community Models</h1>
+                <p class="text-secondary">Analysis of customer support strategies and community building approaches</p>
+            </div>
+
+            <div class="support-categories">
+                <div class="category-section">
+                    <h3>Technical Support</h3>
+                    <div class="support-items">
+                        <div class="support-item card">
+                            <div class="card__body">
+                                <h4>Multi-Level Support</h4>
+                                <p>Tiered support structures from basic help desk to specialized technical assistance</p>
+                            </div>
+                        </div>
+                        <div class="support-item card">
+                            <div class="card__body">
+                                <h4>Training Programs</h4>
+                                <p>Comprehensive training for users, from basic operation to advanced techniques</p>
+                            </div>
+                        </div>
+                        <div class="support-item card">
+                            <div class="card__body">
+                                <h4>Community Forums</h4>
+                                <p>User-driven support communities and knowledge sharing platforms</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-section">
+                    <h3>Open Source Initiatives</h3>
+                    <div class="support-items">
+                        <div class="support-item card">
+                            <div class="card__body">
+                                <h4>Open Platforms</h4>
+                                <p>Open APIs and platforms enabling third-party development</p>
+                            </div>
+                        </div>
+                        <div class="support-item card">
+                            <div class="card__body">
+                                <h4>Developer Programs</h4>
+                                <p>Structured programs supporting third-party developers and integrators</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-section">
+                    <h3>Community Building</h3>
+                    <div class="support-items">
+                        <div class="support-item card">
+                            <div class="card__body">
+                                <h4>User Recognition</h4>
+                                <p>Programs recognizing and highlighting successful users and use cases</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="comparison-section">
+                <div class="card">
+                    <div class="card__header">
+                        <h3>Company Support Model Comparison</h3>
+                    </div>
+                    <div class="card__body">
+                        <canvas id="supportChart" height="400"></canvas>
+                        <button id="downloadSupport" class="btn btn--primary btn--sm mt-8">Download Comparison Data</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Page 6: Strategic Recommendations & Roadmap -->
+    <div id="roadmap" class="page">
+        <div class="container">
+            <div class="page-header">
+                <h1>Strategic Recommendations & Roadmap</h1>
+                <p class="text-secondary">4-phase roadmap for partnership development and market entry</p>
+            </div>
+
+            <div class="roadmap-timeline">
+                <div class="timeline-nav">
+                    <button class="timeline-btn active" data-phase="0">Phase 1</button>
+                    <button class="timeline-btn" data-phase="1">Phase 2</button>
+                    <button class="timeline-btn" data-phase="2">Phase 3</button>
+                    <button class="timeline-btn" data-phase="3">Phase 4</button>
+                </div>
+
+                <div class="phase-details" id="phaseDetails">
+                    <!-- Phase details will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <div class="roadmap-filters">
+                <div class="card">
+                    <div class="card__header">
+                        <h3>Roadmap Filters</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="form-group">
+                            <label class="form-label">Filter by Phase</label>
+                            <select id="phaseFilter" class="form-control">
+                                <option value="all">All Phases</option>
+                                <option value="Phase 1">Phase 1 - Preparation</option>
+                                <option value="Phase 2">Phase 2 - Development</option>
+                                <option value="Phase 3">Phase 3 - Launch</option>
+                                <option value="Phase 4">Phase 4 - Growth</option>
+                            </select>
+                        </div>
+                        <button id="downloadRoadmap" class="btn btn--primary btn--sm mt-8">Download Roadmap</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="recommendations-section">
+                <div class="card">
+                    <div class="card__header">
+                        <h3>Key Strategic Recommendations</h3>
+                    </div>
+                    <div class="card__body">
+                        <div class="recommendations-grid">
+                            <div class="recommendation-item">
+                                <h4>Partnership Focus</h4>
+                                <p>Prioritize strategic partnerships with specialized companies over competing with established OEMs</p>
+                            </div>
+                            <div class="recommendation-item">
+                                <h4>Market Entry</h4>
+                                <p>Leverage DACH region's high research collaboration potential and innovation clusters</p>
+                            </div>
+                            <div class="recommendation-item">
+                                <h4>Community Building</h4>
+                                <p>Develop open-source ecosystem with strong community support and developer programs</p>
+                            </div>
+                            <div class="recommendation-item">
+                                <h4>Distribution Strategy</h4>
+                                <p>Combine authorized distributors for reach with direct sales for key accounts</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Data Sources</h4>
+                    <ul>
+                        <li>Industry reports and market analysis</li>
+                        <li>Company websites and official documentation</li>
+                        <li>Academic publications and research papers</li>
+                        <li>Expert interviews and market surveys</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Report Information</h4>
+                    <p><strong>Title:</strong> European Intraoral Scanner Market Analysis</p>
+                    <p><strong>Focus:</strong> DACH Region (Germany, Austria, Switzerland)</p>
+                    <p><strong>Date:</strong> June 2025</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for detailed views -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+</body>
+</html>

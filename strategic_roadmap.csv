@@ -1,0 +1,21 @@
+Item,Type,Description,Start_Month,End_Month,Objectives,Key_Partners,Success_Metrics
+Phase 1,Phase,Preparation & Networking (Months 1-6),1.0,6.0,"Gain visibility, Identify core partners, Initiate pilot projects","Acteon, orangedental, Lexmann, Academic advisors","3+ signed LOIs, Advisory board established, Funding secured"
+Activity 1.1,Activity,Presence at IDS 2025 Cologne,1.0,2.25,,,
+Activity 1.2,Activity,Establish Advisory Board with Prof. Wöstmann and Fraunhofer representatives,2.25,3.5,,,
+Activity 1.3,Activity,Pilot partnerships with orangedental and Lexmann,3.5,4.75,,,
+Activity 1.4,Activity,Apply for EU Horizon Europe and national funding,4.75,6.0,,,
+Phase 2,Phase,Development & Internal Community (Months 6-12),6.0,12.0,"Complete MVP toolkit, Build internal test community, Secure partnerships","Development partners, Beta testers, Research institutions","MVP completed, 10+ beta users, MOUs signed"
+Activity 2.1,Activity,Finalize open-source hardware/software kit,6.0,7.5,,,
+Activity 2.2,Activity,Co-engineering with Acteon (optics) and Fraunhofer (algorithms),7.5,9.0,,,
+Activity 2.3,Activity,"Establish online collaboration hub (GitHub, forums)",9.0,10.5,,,
+Activity 2.4,Activity,Train early users and collect feedback,10.5,12.0,,,
+Phase 3,Phase,Launch & Market Entry (Months 12-18),12.0,18.0,"Public release, Commercial application, Network expansion","Distributors, AI partners, Startups, Media","100+ active users, 5+ integrations, Media coverage"
+Activity 3.1,Activity,Official launch with partner success stories,12.0,13.5,,,
+Activity 3.2,Activity,Distribution agreements with Henry Schein/orangedental,13.5,15.0,,,
+Activity 3.3,Activity,Integration projects with Pearl and DentalTwin,15.0,16.5,,,
+Activity 3.4,Activity,Community marketing and content creation,16.5,18.0,,,
+Phase 4,Phase,Growth & Sustainability (Months 18-24+),18.0,24.0,"European expansion, Self-sustaining community, Commercial viability","European distributors, Community leaders, Commercial partners","500+ users, Self-sustaining community, Revenue positive"
+Activity 4.1,Activity,Expand to Nordic/Southern Europe,18.0,19.5,,,
+Activity 4.2,Activity,Establish community self-governance,19.5,21.0,,,
+Activity 4.3,Activity,Develop commercial product variants,21.0,22.5,,,
+Activity 4.4,Activity,Innovation challenges and competitions,22.5,24.0,,,
